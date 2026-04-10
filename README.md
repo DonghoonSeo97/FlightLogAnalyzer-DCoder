@@ -1,118 +1,252 @@
 # DCoder V4.8
 
-> [English](README.md) | 한국어
+> English | [한국어](README.ko.md)
 
-DCoder는 [(주)언레이블]이 개발 및 유지보수하는 **로컬 우선(Local-first) 데스크톱 비행 로그·실험 시계열 분석 워크벤치**입니다.
+**DCoder** is a local-first desktop workbench for flight-log and experimental time-series analysis, developed and maintained by **[Company Name / Engineering Team]**.
 
-이 도구는 클라우드 플랫폼이나 범용 공학 IDE에 의존하지 않고, 로그를 빠르게 열고, 신호를 확인하고, 파생 채널을 만들고, 구간을 비교하고, 결과를 재사용 가능한 형태로 저장하려는 엔지니어를 위해 설계되었습니다.
+It is designed for engineers who need to load logs quickly, inspect signals, create derived channels, compare time ranges, and export reusable analysis outputs without depending on a cloud platform or a full engineering IDE.
 
-## 저장소 소개
+## About this repository
 
-이 저장소에는 **Python**과 **PySide6** 기반으로 개발된 **DCoder V4.8** 데스크톱 애플리케이션이 포함되어 있습니다.
+This repository contains the **DCoder V4.8** desktop application built with **Python** and **PySide6**.
 
-이 제품의 핵심 목표는 아래 한 줄로 요약됩니다.
-**데이터를 빠르게 열고 → 필요한 구간을 잡고 → 원인을 분석하고 → 세션을 저장·재현한다**
+DCoder is positioned as an **analysis workbench**, not as:
+- a GCS for mission upload, vehicle control, or firmware flashing,
+- a cloud data platform for organization-wide indexing and collaboration,
+- or a general-purpose engineering IDE.
 
-## 주요 기능
+Its core goal is simple:
+**open data fast → isolate the right interval → inspect the cause → save and reproduce the session**.
 
-### 핵심 작업 흐름
-- 오프라인 로그 및 실험 데이터 로드
-- 필드 탐색 및 플롯 워크스페이스 구성
-- Overlay / Stack 기반 다중 Figure 생성
-- 글로벌 시간축 기준 동기화 플로팅
-- 분석 세션 저장 및 복원
-- 후속 분석을 위한 결과 내보내기
+## Key capabilities
 
-### 분석 중심 기능
-- 구간 선택 및 비교를 위한 Segment 기반 워크플로
-- 파생 신호 생성
-- Quaternion → Euler 같은 빠른 변환 도구
-- Built-in / Add-on 함수를 실행할 수 있는 Analysis Lab
-- 함수 실행 이력 및 프리셋 재사용
+### Core workflow
+- Load offline logs and experimental datasets
+- Browse available fields and build plot workspaces
+- Create multiple figures with overlay and stack plotting
+- Synchronize plots on a shared time base
+- Save and restore analysis sessions
+- Export selected results for downstream workflows
 
-### 지원 및 확장 가능한 입력
+### Analysis-oriented features
+- Segment-based workflow for interval selection and comparison
+- Derived signal generation
+- Quick conversion tools such as quaternion-to-Euler
+- Analysis Lab with built-in and add-on function execution
+- Function execution history and reusable presets
+
+### Supported and expandable inputs
 - CSV
 - ArduPilot BIN
 - PX4 ULog
-- Crazyflie 로그 (업데이트 예정)
-- ROS 2 bag 워크플로 (업데이트 예정)
-- MCAP (업데이트 예정)
-- Telemetry 확장 포인트 (업데이트 예정)
+- Crazyflie logs
+- ROS 2 bag workflows
+- MCAP
+- Telemetry-oriented extension points
 
-## 왜 DCoder인가
+Some input formats depend on optional parser packages. See the installation section below.
 
-DCoder는 보통 여러 도구에 나뉘어 있는 장점을 하나의 로컬 데스크톱 흐름 안에 모으는 것을 목표로 합니다.
-- 현장 로그 확인의 즉시성
-- 시계열 플로팅 도구의 작업 속도
-- 세션 기반 분석의 재현성
-- 개발자 확장이 가능한 구조
+## Why DCoder
 
-제품 철학은 다음과 같습니다.
-- **로컬 우선**
-- **구간 중심**
-- **분석 중심**
-- **개발자 확장 가능**
-- **세션 재현 가능**
+DCoder aims to combine strengths that are often split across multiple tools:
+- the immediacy of field log inspection,
+- the speed of time-series plotting tools,
+- the reproducibility of session-based analysis,
+- and the practicality of a local desktop workflow.
 
-## 스크린샷
+The product philosophy is:
+- **local-first**,
+- **segment-first**,
+- **analysis-centered**,
+- **extensible by developers**,
+- **repeatable across sessions**.
 
-공개 배포 전 아래 항목의 스크린샷 또는 GIF를 추가하는 것을 권장합니다.
-- 메인 워크스페이스 화면
-- 필드 선택 및 플로팅 흐름
+## Screenshots
+
+Add screenshots or GIFs here before public release.
+
+Recommended assets:
+- Main workspace view
+- Field selection and plotting workflow
 - Analysis Lab
 - Segment Manager
-- 3D Trajectory View
+- 3D trajectory view
 
-## 설치 방법
+## Installation
 
-### GitHub Release 패키지 사용
+### Option 1. Use the GitHub Release package
 
-사용자는 **Releases** 페이지에서 최신 Windows 배포 패키지를 내려받아 실행합니다.
+For most users, download the latest Windows release asset from the **Releases** page and run the packaged application.
 
-## 버전 관리 및 향후 업데이트
+Recommended for:
+- test users,
+- non-developer users,
+- internal deployment,
+- QA validation.
 
-이 저장소는 향후 버전 업데이트를 계속 이어가는 것을 전제로 작성되었습니다.
+### Option 2. Run from source
 
-권장 릴리즈 운영 방식:
-- 패키지 배포는 **GitHub Releases** 사용
-- 릴리즈 태그는 `v4.8.0`, `v4.8.1`, `v4.9.0`처럼 명확하게 관리
-- 각 릴리즈 노트는 아래 항목으로 요약
+#### Requirements
+- Python 3.10+
+- Windows 10/11 recommended
+
+#### Core dependencies
+```bash
+pip install -r requirements.txt
+```
+
+#### Optional parser dependencies
+```bash
+pip install -r requirements-optional.txt
+```
+
+### Run
+```bash
+python main.py
+```
+
+### Smoke test
+```bash
+python smoke_check.py
+```
+
+## Build a Windows release
+
+A typical PyInstaller-based build is used for Windows distribution.
+
+Example:
+```bash
+python -m PyInstaller --clean --noconfirm --onedir --windowed --name DCoder_v4_8_260410 --paths . --add-data "resources;resources" --add-data "LICENSE;." --hidden-import pymavlink --hidden-import pyulog --hidden-import rosbags.highlevel --hidden-import mcap.reader --collect-submodules rosbags --collect-submodules mcap --collect-submodules matplotlib.backends --copy-metadata pyqtgraph --copy-metadata pandas --copy-metadata scipy --exclude-module PyQt5 --exclude-module PyQt6 --exclude-module PySide2 --exclude-module OpenGL --exclude-module pyqtgraph.opengl main.py
+```
+
+Before packaging, it is recommended to remove development leftovers such as:
+- `__pycache__/`
+- `*.pyc`
+- old `build/` and `dist/`
+- temporary sample outputs
+- machine-specific session or settings files
+
+## Project structure
+
+```text
+DCoder/
+├─ api/
+├─ application/
+├─ backend/
+│  ├─ analysis/
+│  ├─ databank/
+│  ├─ mapping/
+│  ├─ parsers/
+│  ├─ processing/
+│  └─ sources/
+├─ domain/
+└─ frontend/
+   └─ qt/
+```
+
+High-level design intent:
+- **frontend**: Qt widgets, views, controllers
+- **application**: use-case-oriented service layer
+- **backend**: data parsing, processing, analysis, source adapters
+- **domain**: contracts, models, app state
+
+## Repository contents
+
+Important files included in this repository:
+- `main.py` — application entry point
+- `requirements.txt` — core dependencies
+- `requirements-optional.txt` — optional parsers and extended input support
+- `USER_MANUAL.md` — end-user guide
+- `ADMIN_MANUAL.md` — administrator / internal operator guide
+- `LICENSE` — license terms
+
+## Versioning and future updates
+
+This repository is intended for continued version updates.
+
+Recommended release practice:
+- Use **GitHub Releases** for packaged builds
+- Keep a clear release title such as `v4.8.0`, `v4.8.1`, `v4.9.0`
+- Summarize each release with:
   - Added
   - Changed
   - Fixed
   - Known Issues
 
-권장 배포 자산 파일명 예시:
+Suggested release asset naming:
 - `DCoder_v4_8_0_win64.zip`
 - `DCoder_v4_8_1_portable_win64.zip`
 
-권장 버전 정책:
-- **Patch**: 버그 수정, 패키징 수정, UI 결함 수정
-- **Minor**: 분석 함수 추가, parser 확장, 워크플로 개선
-- **Major**: 구조 개편, 데이터 모델 변경, 세션 호환성 변경
+Suggested update policy:
+- **Patch**: bug fixes, packaging fixes, UI defects
+- **Minor**: new analysis functions, parser expansion, workflow improvements
+- **Major**: structural redesign, data model changes, session compatibility changes
 
-## 회사 및 소유권 표기
+When a release changes session compatibility or file format behavior, mention it explicitly in the release note.
 
-DCoder는 **(주) 언레이블**이 개발한 프로그램입니다.
+## Known limitations
 
-## 라이선스
+Depending on the current release state, some advanced input paths may require optional packages or additional validation in the target environment.
 
-이 프로젝트의 라이선스는 저장소에 포함된 `LICENSE` 파일을 따릅니다.
+Recommended before broad public distribution:
+- test all target parser paths,
+- validate session save/restore behavior,
+- verify packaging on a clean Windows machine,
+- confirm optional dependency handling.
 
+## Security and operations note
 
-## 지원 및 문의
+DCoder supports developer-oriented extension paths such as add-on analysis functions.
 
-버그 리포트 또는 기능 요청은 아래 방식으로 접수하는 것을 권장합니다.
-- GitHub Issue 등록
-- 또는 **[support email / internal owner / team alias]**로 문의
+If your deployment enables custom add-ons, treat them as executable Python code and manage them with the same care as internal scripts or plugins.
 
-권장 이슈 분류:
+For production or company-wide use:
+- review add-on sources,
+- define a trusted add-on distribution policy,
+- and separate public release assets from internal experimental extensions.
+
+## Company and ownership
+
+DCoder is developed by **[Company Name / Engineering Team]**.
+
+Replace the placeholder above with your official organization name before public release.
+
+Recommended company statement:
+> Developed and maintained by [Company Name]. All product names, internal workflows, and packaged assets are managed by the company unless otherwise noted.
+
+If your company uses a specific trademark, legal notice, support channel, or redistribution policy, add that information here.
+
+## License
+
+This project is distributed under the terms described in the `LICENSE` file included in this repository.
+
+If your company plans to change the license before release, update both the `LICENSE` file and this section together.
+
+## Support
+
+For bug reports and feature requests:
+- open a GitHub Issue,
+- or contact **[support email / internal owner / team alias]**.
+
+Recommended issue template categories:
 - Bug report
 - Feature request
 - Parser/input issue
 - Packaging issue
 - UI/UX feedback
 
-## 감사의 말
+## Acknowledgements
 
-DCoder는 실제 비행 로그 분석, 시계열 실험 데이터 검토, 현장 엔지니어링 작업 흐름의 요구를 반영해 설계되었습니다.
+DCoder reflects practical needs from real engineering workflows involving flight logs, time-series analysis, and experiment data inspection.
+
+---
+
+## Recommended README customization checklist before release
+
+Replace the placeholders below before publishing:
+- `[Company Name / Engineering Team]`
+- `[support email / internal owner / team alias]`
+- screenshots/GIFs
+- final version number
+- exact supported OS and Python versions
+- final licensing statement if changed
